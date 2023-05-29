@@ -10,6 +10,10 @@ const usersRouter = require('./routes/users');
 //load the donuts router
 const apiDonutsRouter  = require('./routes/api/v1/donuts'); 
 
+//add mongoose to the project and connect to the database 
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/donuts', {useNewUrlParser: true});
+
 const app = express();
 
 // view engine setup
