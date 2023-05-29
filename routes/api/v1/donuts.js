@@ -2,19 +2,13 @@
 const express = require('express');
 //constant router is set to require express.Router()
 const router = express.Router();
+const donutsController = require('../../../controllers/api/v1/donuts');
 
 //router.get is for handling GET requests
-router.get('/', (req, res) => {
-    res.json({
-        "status": 'You are riding the donut API!'
-    });
-});
+router.get('/', donutsController.getAll);
+
 
 //router.post is for handling POST requests
-router.post('/', (req, res) => {
-    res.json({
-        "status": 'You are riding the donut API!'
-    });
-});
+router.post('/', donutsController.create);
 
 module.exports = router;
