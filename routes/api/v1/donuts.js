@@ -16,3 +16,5 @@ router.post('/', (req, res) => {
         "status": 'You are riding the donut API!'
     });
 });
+
+module.exports = router;
