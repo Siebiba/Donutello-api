@@ -1,29 +1,30 @@
 
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const Donut = require('../../../models/Donut');
 
-//schema for donuts collection in the database 
-const donutsSchema = new Schema({
-    text: String,
-    user: String,
-    complete: Boolean
-});
-
-//model for donuts collection with schema donutsSchema
-const Donut = mongoose.model('Donut', donutsSchema);
-
+// add const getAll use async/await or promises if async functions
 const getAll = (req, res) => {
     res.json({
-        "status": 'You are riding the donut API!'
+        message: 'Welcome to Donutello!',
+
     });
 }
 
 
-const create = (req, res) => {
-    res.json({
-        "status": 'You are riding the donut API!'
+// add create use async/await 
+const create = async (req, res) => {
+    const donut = new Donut({
+        text: req.body.text,
+        user: req.body.user,
+        completed: req.body.completed
     });
+    try {
+        const savedDonut = await donut.save();
+        res.json(savedDonut);
+    } catch (err) {
+        res.status(400).json(err);
+    }
 }
+
 
 
 module.exports.getAll = getAll;

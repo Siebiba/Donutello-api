@@ -12,7 +12,7 @@ const apiDonutsRouter  = require('./routes/api/v1/donuts');
 
 //add mongoose to the project and connect to the database 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/donuts', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost:27017/donutsapp', {useNewUrlParser: true});
 
 const app = express();
 
