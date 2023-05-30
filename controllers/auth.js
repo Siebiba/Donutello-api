@@ -1,5 +1,5 @@
 const User = require('../models/User');
-const passport = require('../passport/passport');
+//const passport = require('../passport/passport');
 
 const signup = async (req, res, next) => {
     let username = req.body.username;
@@ -9,7 +9,7 @@ const signup = async (req, res, next) => {
         username: username
     });
 
-    await User.setPassword(password);
+    await user.setPassword(password);
     await user.save().then(result => {
         res.json({
             status: "success",
