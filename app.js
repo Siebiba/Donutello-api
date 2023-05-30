@@ -13,6 +13,8 @@ const apiDonutsRouter  = require('./routes/api/v1/donuts');
 //add mongoose to the project and connect to the database 
 const mongoose = require('mongoose');
 
+mongoose.set('useCreateIndex', true);
+
 //connect to the database
 mongoose.connect('mongodb://127.0.0.1:27017/test')
   .then(() => console.log('Connected!'));
@@ -24,6 +26,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
+
+//on express json parce the body of the request
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
