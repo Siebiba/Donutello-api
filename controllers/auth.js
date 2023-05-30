@@ -20,7 +20,7 @@ const signup = async (req, res, next) => {
         res.json({
             "status": "success",
             "data": {
-                "token" : token
+                "token": token
             }
         })
     }).catch(err => {
@@ -34,18 +34,33 @@ const signup = async (req, res, next) => {
 
 const login = async (req, res, next) => {
     const user = await User.authenticate()(req.body.username, req.body.password)
-    .then(result => { res.json({
-        "status": "success",
-        "data": {
-            "user": result
-        }
-    });
-    }).catch(err => {
-        res.json({
-            status: "error",
-            message: err
+        .then(result => {
+
+            if (!result.user) {
+                return res.json({
+                    "status": "failed",
+                    "message": "Username or password is incorrect"
+                });
+
+            }
+            let token = jwt.sign({
+                uid: result.user._id,
+                username: result.user.username
+            }, 'Secret');
+
+
+            return res.json({
+                "status": "success",
+                "data": {
+                    "token": token
+                }
+            });
+        }).catch(err => {
+            res.json({
+                status: "error",
+                message: err
+            });
         });
-    });
 };
 
 module.exports.signup = signup;
