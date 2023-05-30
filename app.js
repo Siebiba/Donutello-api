@@ -13,8 +13,6 @@ const apiDonutsRouter  = require('./routes/api/v1/donuts');
 //add mongoose to the project and connect to the database 
 const mongoose = require('mongoose');
 
-mongoose.set('useCreateIndex', true);
-
 //connect to the database
 mongoose.connect('mongodb://127.0.0.1:27017/test')
   .then(() => console.log('Connected!'));
