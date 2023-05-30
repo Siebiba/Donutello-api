@@ -3,10 +3,13 @@ const Donut = require('../../../models/Donut');
 
 // add const getAll use async/await or promises if async functions
 const getAll = (req, res) => {
-    res.json({
-        message: 'Welcome to Donutello!',
-
-    });
+    Donut.find().exec()
+        .then((donuts) => {
+            res.json(donuts);
+        })
+        .catch((err) => {
+            res.status(500).json(err);
+        });
 }
 
 
