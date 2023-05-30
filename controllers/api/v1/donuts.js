@@ -14,18 +14,30 @@ const getAll = (req, res) => {
 
 
 // add create use async/await 
-const create = async (req, res) => {
-    const donut = new Donut({
-        text: req.body.text,
-        user: req.body.user,
-        completed: req.body.completed
-    });
-    try {
-        const savedDonut = await donut.save();
-        res.json(savedDonut);
-    } catch (err) {
-        res.status(400).json(err);
-    }
+const create = (req, res) => {
+
+    let donut = new Donut();
+    donut.user = req.user._id;
+
+    donut.base = req.body.base;
+    donut.glaze = req.body.glaze;
+
+    donut.name = req.body.name;
+    donut.company = req.body.company;
+    
+    donut.save()
+        .then((donut) => {
+            res.json({
+                status: "success",
+                data: donut
+            });
+        }
+        )
+        .catch((err) => {
+            res.status(500).json(err);
+        }
+        );
+    
 }
 
 
