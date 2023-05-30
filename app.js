@@ -4,6 +4,9 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+//add cors to the project so that the front end can talk to the back end
+const cors = require('cors');
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
@@ -30,6 +33,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//add cors to the project so that the front end can talk to the back 
+app.use(cors());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
