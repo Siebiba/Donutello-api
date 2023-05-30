@@ -11,7 +11,9 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
 //load the donuts router
-const apiDonutsRouter  = require('./routes/api/v1/donuts'); 
+const apiDonutsRouter  = require('./routes/api/v1/donuts');
+//load passport
+const passport = require('./passport/passport'); 
 
 //add mongoose to the project and connect to the database 
 const mongoose = require('mongoose');
@@ -40,7 +42,7 @@ app.use(cors());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 //load the donuts router
-app.use('/api/v1/donuts', apiDonutsRouter); 
+app.use('/api/v1/donuts', passport.authenticate('jwt', { session: false }), apiDonutsRouter); 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
