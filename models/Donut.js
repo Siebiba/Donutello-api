@@ -4,13 +4,11 @@ const Schema = mongoose.Schema;
 
 //schema for donuts collection in the database 
 const donutsSchema = new Schema({
-    text: {
-        type:String
-    },
-
+    base: String,
+    glaze: String,
+    name: String,
+    company: String,
     user: String,
-    completed: Boolean
-   
 });
 
 //model for donuts collection with schema donutsSchema
