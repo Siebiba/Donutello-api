@@ -13,14 +13,18 @@ const usersRouter = require('./routes/users');
 //load the donuts router
 const apiDonutsRouter  = require('./routes/api/v1/donuts');
 //load passport
-const passport = require('./passport/passport'); 
+const passport = require('./passport/passport');
+
+const config = require('config');
 
 //add mongoose to the project and connect to the database 
 const mongoose = require('mongoose');
 
 //connect to the database
-mongoose.connect('mongodb://127.0.0.1:27017/donutello')
+mongoose.connect(config.get('Database.conn'))
   .then(() => console.log('Connected!'));
+
+  console.log(config.get('Database.conn'));
 
 const app = express();
 
