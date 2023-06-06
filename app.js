@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+
 //add cors to the project so that the front end can talk to the back end
 const cors = require('cors');
 
@@ -27,6 +28,8 @@ mongoose.connect(config.get('Database.conn'))
   console.log(config.get('Database.conn'));
 
 const app = express();
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

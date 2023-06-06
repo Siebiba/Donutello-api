@@ -1,5 +1,6 @@
 const passport = require('passport');
 const User = require('../models/User');
+const config = require('config');
 
 
 //new strategy for local login
@@ -13,7 +14,8 @@ var JwtStrategy = require('passport-jwt').Strategy,
     ExtractJwt = require('passport-jwt').ExtractJwt;
 var opts = {}
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = 'Secret';
+
+opts.secretOrKey = config.get('jwt.secret');
 
 //create new jwt strategy with async function
 passport.use(new JwtStrategy(opts, async function (jwt_payload, done) {
