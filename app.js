@@ -19,7 +19,7 @@ const passport = require('./passport/passport');
 const mongoose = require('mongoose');
 
 //connect to the database
-mongoose.connect('mongodb://127.0.0.1:27017/test')
+mongoose.connect('mongodb://127.0.0.1:27017/donutello')
   .then(() => console.log('Connected!'));
 
 const app = express();
